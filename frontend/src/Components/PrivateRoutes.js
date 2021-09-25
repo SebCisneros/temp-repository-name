@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 export function PrivateRouteNotLoggedIn({ component: Component, ...rest }) {
   const { currentUser } = useAuth();
   return (
-    <Route
+    <Route 
       {...rest}
       render={(props) => {
         return currentUser ? (
@@ -17,8 +17,6 @@ export function PrivateRouteNotLoggedIn({ component: Component, ...rest }) {
     ></Route>
   );
 }
-
-
 
 export function PrivateRouteLoggedIn({ component: Component, ...rest }) {
   const { currentUser } = useAuth();
