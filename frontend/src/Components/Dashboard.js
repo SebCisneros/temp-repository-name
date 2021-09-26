@@ -32,7 +32,7 @@ export default function Dashboard() {
             {" "}
             <Button>Log In</Button>
           </Link>
-          <Link to="/login">
+          <Link to="/signup">
             {" "}
             <Button>Sign up.</Button>
           </Link>
