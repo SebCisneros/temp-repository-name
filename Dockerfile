@@ -4,7 +4,7 @@ ENV HOME /root
 
 WORKDIR /root
 
-COPY ["package.json", "package-lock.json", "./"]
+COPY ["frontend/package.json", "frontend/package-lock.json", "./"]
 
 WORKDIR /root/frontend
 
