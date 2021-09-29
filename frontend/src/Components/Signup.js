@@ -11,7 +11,6 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
   async function handleSubmit(e) {
     setConfirmation("");
