@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 const DB_HOST = "Palm5"
 const DB_PASSWORD = "cse442palm5"
 
-const DB_URL = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
+const DB_URL = "mongodb+srv://" + DB_HOST + ":" + DB_PASSWORD + "@cse442-palm-5.76fkk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 const client = new MongoClient(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
