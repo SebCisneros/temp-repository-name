@@ -7,13 +7,16 @@ const DB_URL = "mongodb+srv://" + DB_HOST + ":" + DB_PASSWORD + "@cse442-palm-5.
 
 const client = new MongoClient(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
+// sample code with sample database which will be deleted.
 async function run() {
   try {
     await client.connect();
+    // collection
     const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { title: 'Back to the Future' };
+    // document
+    const movies = database.collection('comments');
+    // Query for comments with author name? I think.
+    const query = { name : 'Mercedes Tyler' };
     const movie = await movies.findOne(query);
     console.log(movie);
   } finally {
