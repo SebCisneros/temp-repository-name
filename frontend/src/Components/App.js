@@ -10,13 +10,15 @@ import Profile from "./Profile";
 import { PrivateRouteNotLoggedIn, PrivateRouteLoggedIn } from "./PrivateRoutes";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
+import Navbar from "../Components/Navbar";
 
 function App() {
   return (
     <div>
       
         <Router>
-          <AuthProvider>
+        <AuthProvider>
+          <Navbar/>
             <Switch>
               <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
               <Route exact path="/" component={Dashboard} />

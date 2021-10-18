@@ -5,12 +5,11 @@ import App from "./Components/App.js";
 import "./CSSComponents/Navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthProvider } from "./context/AuthContext";
-import Navbar from "./Components/Navbar";
+
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <Navbar />
       <App />
     </AuthProvider>
   </React.StrictMode>,
