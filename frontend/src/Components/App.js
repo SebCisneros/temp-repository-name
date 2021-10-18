@@ -7,19 +7,18 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard.js";
 import Login from "./Login";
 import Profile from "./Profile";
-import { PrivateRouteNotLoggedIn,PrivateRouteLoggedIn }from "./PrivateRoutes";
+import { PrivateRouteNotLoggedIn, PrivateRouteLoggedIn } from "./PrivateRoutes";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
+import Navbar from "../Components/Navbar";
 
 function App() {
   return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
+    <div>
+      
         <Router>
-          <AuthProvider>
+        <AuthProvider>
+          <Navbar/>
             <Switch>
               <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
               <Route exact path="/" component={Dashboard} />
@@ -43,7 +42,6 @@ function App() {
           </AuthProvider>
         </Router>
       </div>
-    </Container>
   );
 }
 

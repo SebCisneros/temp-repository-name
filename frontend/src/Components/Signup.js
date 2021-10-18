@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 export default function Signup() {
   const emailRef = useRef();
@@ -11,7 +12,6 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
   async function handleSubmit(e) {
     setConfirmation("");
@@ -33,54 +33,61 @@ export default function Signup() {
     setLoading(false);
   }
   return (
-    <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center-mt-4">Sign Up</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          {confirmation && <Alert variant="success">{confirmation}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email </Form.Label>
-              <Form.Control
-                placeholder="Email"
-                type="email"
-                ref={emailRef}
-                requried
-              />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                placeholder="Password"
-                type="password"
-                ref={passwordRef}
-                requried
-              />
-            </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control
-                placeholder="Password Confirmation"
-                type="password"
-                ref={passwordConfirmRef}
-                requried
-              />
-            </Form.Group>
 
-            <Button
-              disabled={loading}
-              type="submit"
-              className="w-100 text-center mt-2"
-            >
-              Sign Up
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Already have an Account <Link to="/login">Log In</Link>
-      </div>
-    </>
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div className="w-100" style={{ maxWidth: "400px" }}>
+          <Card>
+            <Card.Body>
+              <h2 className="text-center-mt-4">Sign Up</h2>
+              {error && <Alert variant="danger">{error}</Alert>}
+              {confirmation && <Alert variant="success">{confirmation}</Alert>}
+              <Form onSubmit={handleSubmit}>
+                <Form.Group id="email">
+                  <Form.Label>Email </Form.Label>
+                  <Form.Control
+                    placeholder="Email"
+                    type="email"
+                    ref={emailRef}
+                    requried
+                  />
+                </Form.Group>
+                <Form.Group id="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    placeholder="Password"
+                    type="password"
+                    ref={passwordRef}
+                    requried
+                  />
+                </Form.Group>
+                <Form.Group id="password-confirm">
+                  <Form.Label>Password Confirmation</Form.Label>
+                  <Form.Control
+                    placeholder="Password Confirmation"
+                    type="password"
+                    ref={passwordConfirmRef}
+                    requried
+                  />
+                </Form.Group>
+
+                <Button
+                  disabled={loading}
+                  type="submit"
+                  className="w-100 text-center mt-2"
+                >
+                  Sign Up
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+          <div className="w-100 text-center mt-2">
+            Already have an Account <Link to="/login">Log In</Link>
+          </div>
+        </div>
+      </Container>
+  
   );
 }
