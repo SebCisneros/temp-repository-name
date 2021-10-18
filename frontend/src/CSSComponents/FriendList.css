@@ -1,0 +1,40 @@
+div .body {
+    Margin: 50px 200px 0px 200px
+}
+div .friend_list{
+    margin-top: 50px;
+}
+
+table {
+    border-color: gray;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 5px;
+    margin-top: 15px;
+    width: auto;
+    width: 100%;
+}
+
+
+
+th{
+    width: 0px;
+}
+
+.userName{
+    margin: 5px 0px 5px 20px;
+    text-align: left;
+}
+
+
+.profilePic {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px; 
+}
+
+
+
+
+
+
