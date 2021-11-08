@@ -6,15 +6,14 @@ const util = require('util');
 const bodyParser = require('body-parser');
 const moment = require('moment');
 
-
-
+const newUserRoute = require('./routes/userRoute')
 
 const app = express();
 const port = process.env.PORT || 1000;
 
 app.use(cors());
 app.use(express.json());
-
+app.use('/newUser', newUserRoute)
 
 // Initialize the Plaid client
 const configuration = new Configuration({
@@ -91,8 +90,10 @@ app.get('/api/create_link_token', async function (request, response) {
       return response.json(formatError(error.response));
     }
   });
-  
-
+const mongoURI = "mongodb+srv://Palm5:cse442palm5@cse442-palm-5.76fkk.mongodb.net/user_information?retryWrites=true&w=majority";
+mongoose.connect(mongoURI, {useNewUrlParser: true}, () =>
+  console.log("Connected to mongoDB")
+)
 
 app.listen(port, () => {
 console.log(`Server running on ${port}`);

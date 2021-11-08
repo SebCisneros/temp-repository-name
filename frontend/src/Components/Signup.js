@@ -3,6 +3,7 @@ import { Card, Form, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import axios from "axios";
 
 export default function Signup() {
   const emailRef = useRef();
@@ -23,7 +24,11 @@ export default function Signup() {
     }
 
     try {
+      const data = {
+        "userName": emailRef.current.value
+      } 
       await signup(emailRef.current.value, passwordRef.current.value);
+      await axios.post("http://localhost:1000/newUser", data);
       setConfirmation("User Created");
       setLoading(true);
     } catch (err) {
