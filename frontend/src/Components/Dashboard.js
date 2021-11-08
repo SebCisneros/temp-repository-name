@@ -1,58 +1,42 @@
-import React, { Component } from "react";
-import {PlaidLink} from "react-plaid-link";
-import axios from 'axios';
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { useAuth } from "../context/AuthContext";
+import { Link, useHistory } from "react-router-dom";
+import Money_Transfer from "../media/Money_Transfer.svg";
+import "../CSSComponents/Dashboard.css";
+import SplitRequest from "./RequestSplitForm"
 
-class Link extends Component {
-  constructor() {
-    super();
+export default function Dashboard() {
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
 
-    this.state = {
-      linkToken: "",
-    };
-
-  }
-
-
-  componentDidMount = async () =>{
-    var response = await axios.get("http://localhost:1000/api/create_link_token")
-    this.setState({linkToken: response.data["link_token"]});
-  }
-
-  handleOnSuccess = async (public_token, metadata) => {
-    // send token to client server
-    console.log("Hello")
-    console.log(public_token)
-    var data = {
-      public_token: public_token
+  async function handleLogout() {
+    setError("");
+    try {
+      await logout();
+      history.push("/");
+    } catch {
+      setError("Failed to log out");
     }
-    console.log(data)
-    var response = await axios.post("http://localhost:1000/exchange_public_token", data);
-    console.log(response)
-    //to do set accessToken into sessionStorage then move onto UI calls in other components.
-    sessionStorage.setItem("accessToken", response.data["access_token"]);
-
   }
 
-   
-  render() {
-    const {linkToken} = this.state
+  return (
+    <div>
+      {currentUser ? (
+        <>
+        <SplitRequest/>
+        </>
+      ) : (
+        <>
+          <div className="MoneyTransferImage">
+            <img src={Money_Transfer} alt="Money Transfer" width={"500"}></img>
+            <div className="AboutUs">
 
-    return (
-      
-      <div>
-       {linkToken.toString !== 'undefined' ? 
-       <PlaidLink 
-       token={linkToken.toString()} 
-       env="sandbox" 
-       onSuccess={this.handleOnSuccess}
-       onExit={this.handleOnExit}>
-         Connect Bank Account
-         </PlaidLink> 
-         : null
-        }
-      </div>
-    );
-  }
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
-
-export default Link;
