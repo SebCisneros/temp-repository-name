@@ -43,6 +43,7 @@ export default function NavBar() {
               <Link to="/signup">Sign Up</Link>
             </a>{" "}
           </>
+        
         )}
       </div>
     </nav>
