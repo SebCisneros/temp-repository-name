@@ -1,0 +1,28 @@
+.friend-request-button {
+  align-items: flex-start;
+  background-color: var(--white);
+  box-shadow: 0px 4px 4px #00000040;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  left: 362px;
+  min-width: 153px;
+  padding: 3.5px 14.5px;
+  position: absolute;
+  top: 0;
+}
+
+.friend-request {
+  -webkit-text-stroke: 0.5px var(--black);
+  height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  width: 115px;
+}
+
+.friend-request-button.friend-request-button-1 {
+  cursor: unset;
+  left: 515px;
+  top: 137px;
+}
+

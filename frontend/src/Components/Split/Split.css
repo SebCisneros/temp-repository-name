@@ -1,0 +1,26 @@
+.submit-button {
+  align-items: flex-start;
+  background-size: 100% 100%;
+  cursor: pointer;
+  display: flex;
+  height: 32px;
+  justify-content: flex-end;
+  left: 686px;
+  min-width: 104px;
+  padding: 7.8px 29.0px;
+  position: absolute;
+  top: 202px;
+  transition: all 0.2s ease-in;
+}
+
+.submit-button:hover {
+  transform: scale(1.1);
+}
+
+.submit {
+  height: 16px;
+  letter-spacing: 0;
+  min-width: 45px;
+  text-align: center;
+}
+

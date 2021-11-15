@@ -1,0 +1,22 @@
+.friend-button-1 {
+  align-items: flex-start;
+  background-color: var(--mist-gray-2);
+  box-shadow: 0px 4px 4px #00000040;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  left: 233px;
+  min-width: 134px;
+  padding: 3.5px 17.5px;
+  position: absolute;
+  top: 0;
+}
+
+.place-2 {
+  -webkit-text-stroke: 0.5px var(--black);
+  height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  width: 90px;
+}
+

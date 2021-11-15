@@ -11,6 +11,7 @@ import { PrivateRouteNotLoggedIn, PrivateRouteLoggedIn } from "./PrivateRoutes";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import Navbar from "../Components/Navbar";
+import FriendListPage from "./FriendListPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Switch>
               <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
               <Route exact path="/" component={Dashboard} />
+              <Route exact path="/" component={FriendListPage}/>
               <PrivateRouteLoggedIn exact path="/login" component={Login} />
               <PrivateRouteNotLoggedIn
                 exact

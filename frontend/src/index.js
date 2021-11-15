@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./CSSComponents/index.css";
 import App from "./Components/App.js";
 import "./CSSComponents/Navbar.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthProvider } from "./context/AuthContext";
 

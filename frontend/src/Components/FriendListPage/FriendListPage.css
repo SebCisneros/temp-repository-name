@@ -1,0 +1,131 @@
+.friend-list-page {
+  align-items: flex-start;
+  display: flex;
+  overflow: hidden;
+  width: 1440px;
+}
+
+.overlap-group5-3 {
+  height: 1364px;
+  position: relative;
+  width: 1442px;
+}
+
+.overlap-group-10 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  height: 86px;
+  left: 233px;
+  min-width: 1009px;
+  padding: 16px 31px;
+  position: absolute;
+  top: 173px;
+}
+
+.friend-picture-1 {
+  background-color: var(--mist-gray);
+  border-radius: 27px/26.5px;
+  height: 53px;
+  width: 54px;
+}
+
+.friend-name-1 {
+  height: 16px;
+  letter-spacing: 0;
+  margin-left: 48px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.overlap-group1-4 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  height: 86px;
+  left: 233px;
+  min-width: 1009px;
+  padding: 16px 31px;
+  position: absolute;
+  top: 259px;
+}
+
+.overlap-group2-3 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  height: 86px;
+  left: 233px;
+  min-width: 1009px;
+  padding: 16px 31px;
+  position: absolute;
+  top: 345px;
+}
+
+.top-bar-3 {
+  height: 85px;
+  left: 1px;
+  position: absolute;
+  top: 94px;
+  width: 1439px;
+}
+
+.overlap-group3-1 {
+  height: 38px;
+  left: 0;
+  position: absolute;
+  top: 43px;
+  width: 1440px;
+}
+
+.manuline-3 {
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: 34px;
+  width: 1440px;
+}
+
+.user-picture-3 {
+  background-color: var(--mist-gray);
+  border-radius: 32px/32.5px;
+  height: 65px;
+  left: 32px;
+  position: absolute;
+  top: 0;
+  width: 64px;
+}
+
+.overlap-group4-3 {
+  align-items: flex-end;
+  background-color: #a5a6ad;
+  display: flex;
+  height: 79px;
+  left: 0;
+  min-width: 1440px;
+  padding: 14px 33px;
+  position: absolute;
+  top: 0;
+}
+
+.logo-6 {
+  cursor: pointer;
+  letter-spacing: 0;
+  margin-bottom: 2px;
+  min-height: 35px;
+  min-width: 84px;
+}
+
+.temp-name-1 {
+  height: 29px;
+  left: 110px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 97px;
+  width: 123px;
+}
+
