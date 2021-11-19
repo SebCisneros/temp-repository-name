@@ -2,9 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { Configuration, PlaidApi, PlaidEnvironments } = require('plaid');
-const util = require('util');
-const bodyParser = require('body-parser');
-const moment = require('moment');
 
 const newUserRoute = require('./routes/userRoute')
 
@@ -90,7 +87,7 @@ app.get('/api/create_link_token', async function (request, response) {
       return response.json(formatError(error.response));
     }
   });
-const mongoURI = "mongodb+srv://Palm5:cse442palm5@cse442-palm-5.76fkk.mongodb.net/user_information?retryWrites=true&w=majority";
+const mongoURI = process.env.DB_USER_INFO;
 mongoose.connect(mongoURI, {useNewUrlParser: true}, () =>
   console.log("Connected to mongoDB")
 )

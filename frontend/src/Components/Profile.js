@@ -1,11 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-import {PlaidLink} from "react-plaid-link";
-import axios from 'axios';
+import { PlaidLink } from "react-plaid-link";
+import axios from "axios";
 
-
+const url = process.env.HER_URL || "http://localhost:1000/";
 
 export default function Profile() {
   const [error, setError] = useState("");
@@ -24,27 +24,26 @@ export default function Profile() {
   }
 
   useEffect(() => {
-      async function getToken(){
-        var response = await axios.get("http://localhost:1000/api/create_link_token")
-        setLinkToken(response.data["link_token"])
-      }
-      getToken()
-  },[]);
- 
+    async function getToken() {
+      var response = await axios.get(url + "api/create_link_token");
+      setLinkToken(response.data["link_token"]);
+    }
+    getToken();
+  }, []);
+
   const handleOnSuccess = async (public_token, metadata) => {
     // send token to client server
-    console.log("Hello")
-    console.log(public_token)
+    console.log("Hello");
+    console.log(public_token);
     var data = {
-      public_token: public_token
-    }
-    console.log(data)
-    var response = await axios.post("http://localhost:1000/exchange_public_token", data);
-    console.log(response)
+      public_token: public_token,
+    };
+    console.log(data);
+    var response = await axios.post(url + "exchange_public_token", data);
+    console.log(response);
     //to do set accessToken into sessionStorage then move onto UI calls in other components.
     sessionStorage.setItem("accessToken", response.data["access_token"]);
-
-  }
+  };
 
   return (
     <>
@@ -64,17 +63,16 @@ export default function Profile() {
         </Button>
 
         <div>
-       {linkToken.toString !== 'undefined' ? 
-       <PlaidLink 
-       token={linkToken.toString()} 
-       env="sandbox" 
-       onSuccess={handleOnSuccess}
-       >
-         Connect Bank Account
-         </PlaidLink> 
-         : null
-        }
-      </div>
+          {linkToken.toString !== "undefined" ? (
+            <PlaidLink
+              token={linkToken.toString()}
+              env="sandbox"
+              onSuccess={handleOnSuccess}
+            >
+              Connect Bank Account
+            </PlaidLink>
+          ) : null}
+        </div>
       </div>
     </>
   );

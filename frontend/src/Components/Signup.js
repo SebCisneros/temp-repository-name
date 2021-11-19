@@ -5,6 +5,8 @@ import { Link, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import axios from "axios";
 
+const url = process.env.HER_URL || "http://localhost:1000/";
+
 export default function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -28,7 +30,7 @@ export default function Signup() {
         "userName": emailRef.current.value
       } 
       await signup(emailRef.current.value, passwordRef.current.value);
-      await axios.post("http://localhost:1000/newUser", data);
+      await axios.post(url + "newUser", data);
       setConfirmation("User Created");
       setLoading(true);
     } catch (err) {
