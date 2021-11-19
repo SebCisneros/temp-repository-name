@@ -12,4 +12,10 @@ RUN npm install
 
 EXPOSE $PORT
 
-CMD npm run start-heroku
+CMD npm run start
+
+WORKDIR ../backend
+
+RUN npm install
+
+CMD npm run start
