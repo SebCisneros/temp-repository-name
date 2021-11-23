@@ -37,6 +37,13 @@ function add_user(query) {
           console.log("1 user added");
           client.close();
         });
+        client.db("user_log").createCollection(query.Email, function(err, res) {
+          if (err) throw err;
+          console.log("1 user added");
+          client.close();
+        });
+        var new_user = {log: query.Email + " sign up!"};
+        add_log(query.Email, new_user);
       }
       // exist
       else {
@@ -59,6 +66,7 @@ async function remove_user(username) {
     const removed = {Email: username};
     const result_1 = await col.deleteOne(removed);
     const result_2 = await client.db("friend_list").collection(username).drop();
+    const result_3 = await client.db("user_log").collection(username).drop();
 
   } finally {
     await client.close();
@@ -81,7 +89,9 @@ async function add_friend(username, query) {
     //cannot add himself
     if(username != query.User){
       const update = {$set: query};
-      const result = await col.updateOne(query, update, option);
+      const result_1 = await col.updateOne(query, update, option);
+      const new_friend = {log: query.User + " " + "is added to" + " " + username + "'s friend list"};
+      await add_log(username, new_friend);
     }
   } finally {
     await client.close();
@@ -100,6 +110,11 @@ async function remove_friend(username, query) {
 
     const result = await col.deleteOne(query);
 
+    const delete_friend = {log: query.User + " " + "is removed from" + " " + username + "'s friend list"};
+    await add_log(username, delete_friend);
+
+    console.log("1 friend is removed");
+
   } finally {
     await client.close();
   }
@@ -107,4 +122,25 @@ async function remove_friend(username, query) {
 
 //remove_friend(name, test_friend);
 
-module.exports = {add_user, remove_user, add_friend, remove_friend};
+//Add user's log to user's log db
+//need username and log message
+async function add_log(username, query) {
+  try {
+
+    await client.connect();
+    const dbo = client.db("user_log");
+    const col = dbo.collection(username);
+
+    const option = { upsert: true };
+
+    //cannot add himself
+    if(username != query.User){
+      const update = {$set: query};
+      const result = await col.updateOne(query, update, option);
+    }
+  } finally {
+    await client.close();
+  }
+}
+
+module.exports = {add_user, remove_user, add_friend, remove_friend, add_log};
