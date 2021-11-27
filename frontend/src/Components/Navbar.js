@@ -42,7 +42,12 @@ export default function NavBar() {
               {" "}
               <Link to="/signup">Sign Up</Link>
             </a>{" "}
+            <a>
+              {" "}
+              <Link to="/friendListPage">FriendListPage</Link>
+            </a>{" "}
           </>
+          
         )}
       </div>
     </nav>

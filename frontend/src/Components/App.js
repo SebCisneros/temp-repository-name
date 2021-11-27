@@ -23,7 +23,7 @@ function App() {
             <Switch>
               <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/" component={FriendListPage}/>
+              <Route exact path="/friendListPage" component={FriendListPage}/>
               <PrivateRouteLoggedIn exact path="/login" component={Login} />
               <PrivateRouteNotLoggedIn
                 exact
