@@ -44,7 +44,7 @@ export default function NavBar() {
             </a>{" "}
             <a>
               {" "}
-              <Link to="/friendListPage">FriendListPage</Link>
+              <Link to="/friend-List-Page">Friend List Page</Link>
             </a>{" "}
           </>
           

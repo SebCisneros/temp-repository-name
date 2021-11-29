@@ -9,7 +9,6 @@ function FriendRequestButton(props) {
     <Link to="/friend-request-list-page">
       <div className={`friend-request-button border-4px-downriver ${className || ""}`}>
         <div className="friend-request valign-text-middle roboto-normal-downriver-16px">{children}</div>
-      
       </div>
     </Link>
   );

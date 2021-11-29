@@ -1,0 +1,48 @@
+.friend-1-item-1-1 {
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 73px;
+  margin-top: 23px;
+  min-width: 377px;
+}
+
+.item-1 {
+  height: 29px;
+  letter-spacing: 0;
+  min-width: 77px;
+  text-align: center;
+}
+
+.overlap-group-9 {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  height: 30px;
+  margin-left: 18px;
+  min-width: 275px;
+  padding: 3px 12px;
+}
+
+.price {
+  background-color: transparent;
+  border: 0;
+  height: 21px;
+  letter-spacing: 0;
+  padding: 0;
+  text-align: center;
+  width: 41px;
+}
+
+.price::placeholder {
+  color: #a29b9b99;
+}
+
+.friend-1-item-1-1.friend-1-item-3 {
+  margin-top: 13px;
+}
+
+.friend-1-item-1-1.friend-1-item-2 {
+  margin-top: 15px;
+}
+

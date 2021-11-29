@@ -1,0 +1,68 @@
+.spliting-friend-page {
+  align-items: flex-start;
+  display: flex;
+  width: 1440px;
+}
+
+.overlap-group5-1 {
+  height: 1364px;
+  position: relative;
+  width: 1440px;
+}
+
+.list {
+  background-color: var(--white);
+  border-radius: 5px;
+  height: 1025px;
+  left: 665px;
+  position: absolute;
+  top: 133px;
+  width: 660px;
+}
+
+.overlap-group4-2 {
+  height: 686px;
+  left: 61px;
+  position: absolute;
+  top: 313px;
+  width: 500px;
+}
+
+.receipt-place {
+  background-color: var(--mist-gray);
+  cursor: pointer;
+  height: 686px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 500px;
+}
+
+.displace-receipt {
+  height: 29px;
+  left: 161px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 270px;
+}
+
+.add-more-item {
+  background-color: #094055;
+  border-radius: 10px;
+  height: 30px;
+  left: 920px;
+  position: absolute;
+  top: 1026px;
+  width: 150px;
+}
+
+.add-more-items {
+  height: 18px;
+  left: 935px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 1032px;
+}
+

@@ -1,20 +1,12 @@
-.background {
+.background,
+.background-1,
+.background-2,
+.background-3 {
   background-color: var(--white);
   height: 1364px;
   left: 0;
   position: absolute;
   top: 0;
   width: 1440px;
-}
-
-.background.background-1,
-.background.background-2,
-.background.background-3 {
-  height: 1386px;
-}
-
-.background.introduction-backgroup-cover {
-  background-color: #081a558f;
-  height: 341px;
 }
 

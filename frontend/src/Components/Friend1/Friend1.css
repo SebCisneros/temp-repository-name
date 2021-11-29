@@ -1,0 +1,19 @@
+.friend-1 {
+  display: flex;
+  flex-direction: column;
+  height: 219px;
+  left: 720px;
+  position: absolute;
+  top: 172px;
+  width: 450px;
+}
+
+.friend-1.friend-2 {
+  top: 444px;
+}
+
+.friend-1.friend-3 {
+  left: 724px;
+  top: 716px;
+}
+
