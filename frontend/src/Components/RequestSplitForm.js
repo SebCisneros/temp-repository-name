@@ -1,13 +1,17 @@
 // Reference: https://bapunawarsaddam.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
+import "../CSSComponents/RequestSplit.css"
 
 
 export default class Split extends Component {
+   
     constructor(props) {
         super(props);
         this.state = {
             requestSection: [{ username: "", itemPrice: [0]}],
             Friends: []                            // username has to be unique
+            
         }
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
         this.handleChangeItemPrice = this.handleChangeItemPrice.bind(this);
@@ -19,7 +23,7 @@ export default class Split extends Component {
 
     componentDidMount(){
         this.setState({
-            Friends:['test1','test2']}); 
+            Friends:[...this.state.Friends, 'Jieyi@buffalo.edu','Ali@buffalo.edu', 'Sebatian@buffalo.edu', 'seongjae@buffalo.edu', 'Floyd@buffalo.edu']}); 
 
         //const response = await fetch('https://api.npms.io/v2/search?q=react')                              // unsure about the link
         //const data = await response.json();
@@ -69,6 +73,7 @@ export default class Split extends Component {
             requestSection: this.state.requestSection
         }
         console.log(result)                                             // send post request and use that number in Calculate
+        
         //fetch('https://mywebsite.com/endpoint/', {
         //    method: 'POST',
         //    headers: {
@@ -85,11 +90,13 @@ export default class Split extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Please Fill out the form.
-                    <br/>Use Add-Item button when you have more items request from the user
-                    <br />Use Add-Friend button when you have more friend you want to request split from.
-                </h3>
+            <div id="center">
+                <div id="instruction">
+                    <h6>Please Fill out the form.
+                        <br/>Use Add-Item button when you have more items request from the user
+                        <br />Use Add-Friend button when you have more friend you want to request split from.
+                    </h6>
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     {/* loop through requestSection */}
                     {this.state.requestSection.map((element, index) => (
@@ -152,7 +159,7 @@ export default class Split extends Component {
                     <br />
                     <div className="button-section">
                         <button className="button" type="button" onClick={() => this.addRequestSection()}>Add Friend</button>
-                        <button className="button" type="submit">Submit</button>
+                        <button className="button" type="submit"><Link to="/profile">SubmitProfile</Link></button>
                     </div>
                 </form>
                 

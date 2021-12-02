@@ -4,7 +4,7 @@ import "../CSSComponents/FriendList.css"
 import defaultUserPic from "../media/default-user-profile-pic.svg"
 
 function Friend(props) {
-    const {friend, remove, splitRequest} = props
+    const {friend, remove} = props
     return (
         <div className="friend-container">
             
@@ -24,7 +24,9 @@ function Friend(props) {
                 <div  id="splitRequest">
                     {/* modify function for this 
                     allow this switch to request page directly and request page will show this as first name */}           
-                    <button className="button" id="request_button" onClick={() => splitRequest(friend.email)}>Request Split</button>
+                    <button className="button" id="request_button">
+                    <Link to="/">Request Split</Link>
+                    </button>
                 </div>  
                     
         </div>
@@ -80,10 +82,6 @@ export default class FriendList extends Component {
         });
 
         // this should remove this person's friend from database
-    }
-
-    handleRequestSplit(requestUser){
-        // change to the split page with the request user show as the first name 
     }
 
     render() {
