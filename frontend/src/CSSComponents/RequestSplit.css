@@ -1,0 +1,42 @@
+#center{
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+#instruction{
+    margin-bottom: 2%;
+}
+
+
+label{
+    margin-bottom: 1%;
+    margin-right: 1%;
+}
+
+
+button{
+    border-color: white;
+    border-radius: 10%;
+}
+
+#addItem{
+    background-color: #f9c105;
+    margin-right: 5px;
+    
+}
+
+#remove{
+    background-color: #fbdf84;
+    
+}
+
+
+#addFriend{
+    background-color: #4660f9;
+    margin-right: 5px;
+}
+
+#Submit{
+    background-color: #9caafc;
+}
+

@@ -139,7 +139,7 @@ export default class Split extends Component {
                             )}
                             
                             {/* press a add item button for adding more item input for the request section */}
-                            <button key={(index+3).toString()} className="button" type="button" onClick={() => this.addItem(index) }>Add Item</button>
+                            <button key={(index+3).toString()} className="button" id="addItem" type="button" onClick={() => this.addItem(index) }>Add Item</button>
                             
                             {/* press a remove button for each requestsection after the first one */}
                             {
@@ -148,7 +148,8 @@ export default class Split extends Component {
                                         key={(index+4).toString()}
                                         type="button"  
                                         className="button" 
-                                        onClick={() => this.removeRequestSection(index)}>Remove</button>
+                                        id="remove" 
+                                        onClick={() => this.removeRequestSection(index)}>Add Item</button>
                                         : null
                             }
                             <br />
@@ -158,8 +159,8 @@ export default class Split extends Component {
 
                     <br />
                     <div className="button-section">
-                        <button className="button" type="button" onClick={() => this.addRequestSection()}>Add Friend</button>
-                        <button className="button" type="submit"><Link to="/profile">SubmitProfile</Link></button>
+                        <button className="button" id="addFriend" type="button" onClick={() => this.addRequestSection()}>Add Friend</button>
+                        <Link to="/profile"><button className="button" id="Submit" type="submit">SubmitProfile</button></Link>
                     </div>
                 </form>
                 
