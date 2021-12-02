@@ -7,18 +7,23 @@ export default class Split extends Component {
         super(props);
         this.state = {
             requestSection: [{ username: "", itemPrice: [0]}],
-            users: []                            // username has to be unique
+            Friends: []                            // username has to be unique
         }
+        this.handleChangeUsername = this.handleChangeUsername.bind(this);
+        this.handleChangeItemPrice = this.handleChangeItemPrice.bind(this);
+        this.addItem = this.addItem.bind(this);
+        this.removeRequestSection = this.removeRequestSection.bind(this);
+        this.addRequestSection = this.addRequestSection.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
         this.setState({
-            users:['test1','test2']}); 
+            Friends:['test1','test2']}); 
 
         //const response = await fetch('https://api.npms.io/v2/search?q=react')                              // unsure about the link
         //const data = await response.json();
-        //this.setState({ users: data.users }));
+        //this.setState({ Friends: data.Friends }));
     }
 
     handleChangeUsername(i, e) {
@@ -98,9 +103,9 @@ export default class Split extends Component {
                                 value={element.username}
                                 onChange={e => this.handleChangeUsername(index, e)}
                                 >
-                                {/* loops through this.state.users */}
+                                {/* loops through this.state.Friends */}
                                 {
-                                    this.state.users.map((user) =>
+                                    this.state.Friends.map((user) =>
                                         <option
                                             key={user}
                                             value={user}
@@ -120,6 +125,7 @@ export default class Split extends Component {
                                         key={(index+6+i).toString()}
                                         type='number'
                                         min='0'
+                                        step='0.01'
                                         value={item || 0}
                                         onChange={e => this.handleChangeItemPrice(index, i, e)} />
                                 </div>
@@ -138,6 +144,7 @@ export default class Split extends Component {
                                         onClick={() => this.removeRequestSection(index)}>Remove</button>
                                         : null
                             }
+                            <br />
                             <br />
                         </div>
                     ))}
