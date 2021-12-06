@@ -65,7 +65,6 @@ export default class FriendList extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleAddFriend = this.handleAddFriend.bind(this);
     this.handleRmoveFriend = this.handleRmoveFriend.bind(this);
-    this.handleRequestSplit = this.handleRequestSplit.bind(this);
   }
 
   componentDidMount() {
@@ -128,7 +127,6 @@ export default class FriendList extends Component {
                 key={friend.email}
                 friend={friend}
                 remove={this.handleRmoveFriend}
-                splitRequest={this.handleRequestSplit}
               />
             ))}
           </div>

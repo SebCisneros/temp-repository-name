@@ -149,7 +149,7 @@ export default class Split extends Component {
                                         type="button"  
                                         className="button" 
                                         id="remove" 
-                                        onClick={() => this.removeRequestSection(index)}>Add Item</button>
+                                        onClick={() => this.removeRequestSection(index)}>Remove Friend</button>
                                         : null
                             }
                             <br />
