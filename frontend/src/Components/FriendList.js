@@ -1,12 +1,14 @@
-import { React, Component } from "react";
+import { React, Component, useState } from "react";
 import { Link } from "react-router-dom";
 import { alignPropType } from "react-bootstrap/esm/DropdownMenu";
 import "../CSSComponents/FriendList.css";
 import defaultUserPic from "../media/default-user-profile-pic.svg";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
-function Friend(props) {
-  const { friend, remove } = props;
+function Friend(friend,remove) {
+     const { currentUser, logout } = useAuth();
+ 
   return (
     <div className="friend-container">
       <div className="inline">
@@ -44,49 +46,31 @@ function Friend(props) {
   );
 }
 
-export default class FriendList extends Component {
-  getAllUsers() {
+export default function FriendList() {
+  const { currentUser, logout } = useAuth();
+  //{currentUser.email}
+  function getAllUsers() {
     return ["Ali", "J", "Seb", "PlaceHolder"];
   }
 
-  getUserFriends() {
+  function getUserFriends() {
     return ["Ali", "Seb"];
   }
 
-  addFriend(username) {
-      return "Friend Added"
-  }
-  constructor(props) {
-    super(props);
-    this.state = {
-      friends: [],
-      input: "",
-    };
-    this.handleInput = this.handleInput.bind(this);
-    this.handleAddFriend = this.handleAddFriend.bind(this);
-    this.handleRmoveFriend = this.handleRmoveFriend.bind(this);
-    this.handleRequestSplit = this.handleRequestSplit.bind(this);
+  function addFriend(username) {
+    return "Friend Added";
   }
 
-  componentDidMount() {
-    this.setState({
-      friends: [
-        { email: "Jieyi@buffalo.edu", profilePic: defaultUserPic },
-        { email: "Ali@buffalo.edu", profilePic: defaultUserPic },
-        { email: "Sebatian@buffalo.edu", profilePic: defaultUserPic },
-        { email: "seongjae@buffalo.edu", profilePic: defaultUserPic },
-        { email: "Floyd@buffalo.edu", profilePic: defaultUserPic },
-      ],
-    });
-  }
+  const [friends, setFriends] = useState([]);
+  const [input, setIput] = useState("");
 
-  handleInput(e) {
+  function handleInput(e) {
     this.setState({
       input: e.target.value,
     });
   }
 
-  handleAddFriend() {
+  function handleAddFriend() {
     {
       this.state.input !== "" &&
         this.setState({
@@ -100,7 +84,7 @@ export default class FriendList extends Component {
     // this need to search if the user exist and add it to this user's friend list
   }
 
-  handleRmoveFriend(email) {
+  function handleRmoveFriend(email) {
     this.setState({
       friends: this.state.friends.filter((friend) => friend.email !== email),
     });
@@ -108,34 +92,32 @@ export default class FriendList extends Component {
     // this should remove this person's friend from database
   }
 
-  render() {
-    return (
-      <div className="body">
-        <h2>Friend List</h2>
-        <input
-          type="text"
-          placeholder="Friend Email"
-          value={this.state.input}
-          onChange={this.handleInput}
-        />
-        <button id="search_button" onClick={this.handleAddFriend}>
-          Search friend
-        </button>
-        {this.state.friends.length > 0 ? (
-          <div className="friends_list">
-            {this.state.friends.map((friend) => (
-              <Friend
-                key={friend.email}
-                friend={friend}
-                remove={this.handleRmoveFriend}
-                splitRequest={this.handleRequestSplit}
-              />
-            ))}
-          </div>
-        ) : (
-          "Time to add new friends."
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className="body">
+      <h2>Friend List</h2>
+      <input
+        type="text"
+        placeholder="Friend Email"
+        value={handleInput}
+        onChange={handleInput}
+      />
+      <button id="search_button" onClick={handleAddFriend}>
+        Search friend
+      </button>
+      {friends.length > 0 ? (
+        <div className="friends_list">
+          {this.state.friends.map((friend) => (
+            <Friend
+              key={friend.email}
+              friend={friend}
+              remove={handleRmoveFriend}
+              splitRequest={handleInput}
+            />
+          ))}
+        </div>
+      ) : (
+        "Time to add new friends."
+      )}
+    </div>
+  );
 }
