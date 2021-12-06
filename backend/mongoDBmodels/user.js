@@ -5,8 +5,7 @@ const userSchema = mongoose.Schema({
         type: String,
     },
     friendList:{
-        type: Array,
-        default: []
+        type: Array
     }
 });
 
