@@ -11,37 +11,42 @@ import { PrivateRouteNotLoggedIn, PrivateRouteLoggedIn } from "./PrivateRoutes";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import Navbar from "../Components/Navbar";
+import FriendList from "./FriendList";
 
 function App() {
   return (
     <div>
-      
-        <Router>
+      <Router>
         <AuthProvider>
-          <Navbar/>
-            <Switch>
-              <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
-              <Route exact path="/" component={Dashboard} />
-              <PrivateRouteLoggedIn exact path="/login" component={Login} />
-              <PrivateRouteNotLoggedIn
-                exact
-                path="/profile"
-                component={Profile}
-              />
-              <PrivateRouteNotLoggedIn
-                exact
-                path="/update-profile"
-                component={UpdateProfile}
-              />
-              <PrivateRouteLoggedIn
-                exact
-                path="/forgot-password"
-                component={ForgotPassword}
-              />
-            </Switch>
-          </AuthProvider>
-        </Router>
-      </div>
+          <Navbar />
+          <Switch>
+            <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
+            <Route exact path="/" component={Dashboard} />
+            <PrivateRouteLoggedIn exact path="/login" component={Login} />
+            <PrivateRouteNotLoggedIn
+              exact
+              path="/friendlist"
+              component={FriendList}
+            />
+            <PrivateRouteNotLoggedIn
+              exact
+              path="/profile"
+              component={Profile}
+            />
+            <PrivateRouteNotLoggedIn
+              exact
+              path="/update-profile"
+              component={UpdateProfile}
+            />
+            <PrivateRouteLoggedIn
+              exact
+              path="/forgot-password"
+              component={ForgotPassword}
+            />
+          </Switch>
+        </AuthProvider>
+      </Router>
+    </div>
   );
 }
 

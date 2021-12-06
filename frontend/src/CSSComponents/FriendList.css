@@ -1,29 +1,64 @@
 div .body {
-    Margin: 50px 200px 0px 200px
-}
-div .friend_list{
-    margin-top: 50px;
+    margin-left: 10%;
+    margin-top: 3%;
+    margin-right: 10%;
 }
 
-table {
-    border-color: gray;
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 5px;
-    margin-top: 15px;
+#search_button{
+    background-color:#99ddff;
+    color: black;
+    border: none;
+    text-decoration: none;
+    margin-left: 2%;
+    padding-right:1%;
+    padding-left: 1%;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+    border-radius: 10px;
+}
+
+
+.friend-container {
+    border: 2px solid gray;
+    margin-top: 1%;
+    padding: 2%;
     width: auto;
     width: 100%;
+    display:flex;
+    text-align: center;
+    align-items: center;
 }
 
-
-
-th{
-    width: 0px;
+#push-right{
+    margin-left: auto;
 }
 
-.userName{
-    margin: 5px 0px 5px 20px;
-    text-align: left;
+#splitRequest{
+    margin-left: 1%;
+}
+
+#remove_button{
+    background-color: #002633;
+    color: white;
+}
+
+#request_button{
+    margin-left: 5%;
+    background-color: #0099cc;
+    width: 100%
+}
+
+.button{
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    padding: 2%;
+    margin: 1%;
+    width: 100%;
+    cursor: pointer;
+    font-family: Arial, 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
+    font-size: small;
+    border-radius: 10px;
 }
 
 

@@ -1,24 +1,38 @@
 // Reference: https://bapunawarsaddam.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
+import "../CSSComponents/RequestSplit.css"
 
 
 export default class Split extends Component {
+   
     constructor(props) {
         super(props);
         this.state = {
             requestSection: [{ username: "", itemPrice: [0]}],
-            users: []                            // username has to be unique
+            Friends: []                            // username has to be unique
+            
         }
+        this.handleChangeUsername = this.handleChangeUsername.bind(this);
+        this.handleChangeItemPrice = this.handleChangeItemPrice.bind(this);
+        this.addItem = this.addItem.bind(this);
+        this.removeRequestSection = this.removeRequestSection.bind(this);
+        this.addRequestSection = this.addRequestSection.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    // need to be updated
+    getUserFriends() {
+        return ["Ali@gmail.com", "Seb@gmail.com","check@gmali.com"];
     }
 
     componentDidMount(){
         this.setState({
-            users:['test1','test2']}); 
+            Friends: this.getUserFriends()}); 
 
         //const response = await fetch('https://api.npms.io/v2/search?q=react')                              // unsure about the link
         //const data = await response.json();
-        //this.setState({ users: data.users }));
+        //this.setState({ Friends: data.Friends }));
     }
 
     handleChangeUsername(i, e) {
@@ -64,6 +78,7 @@ export default class Split extends Component {
             requestSection: this.state.requestSection
         }
         console.log(result)                                             // send post request and use that number in Calculate
+        
         //fetch('https://mywebsite.com/endpoint/', {
         //    method: 'POST',
         //    headers: {
@@ -80,11 +95,13 @@ export default class Split extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Please Fill out the form.
-                    <br/>Use Add-Item button when you have more items request from the user
-                    <br />Use Add-Friend button when you have more friend you want to request split from.
-                </h3>
+            <div id="center">
+                <div id="instruction">
+                    <h6>Please Fill out the form.
+                        <br/>Use Add-Item button when you have more items request from the user
+                        <br />Use Add-Friend button when you have more friend you want to request split from.
+                    </h6>
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     {/* loop through requestSection */}
                     {this.state.requestSection.map((element, index) => (
@@ -98,9 +115,9 @@ export default class Split extends Component {
                                 value={element.username}
                                 onChange={e => this.handleChangeUsername(index, e)}
                                 >
-                                {/* loops through this.state.users */}
+                                {/* loops through this.state.Friends */}
                                 {
-                                    this.state.users.map((user) =>
+                                    this.state.Friends.map((user) =>
                                         <option
                                             key={user}
                                             value={user}
@@ -120,32 +137,38 @@ export default class Split extends Component {
                                         key={(index+6+i).toString()}
                                         type='number'
                                         min='0'
+                                        step='0.01'
                                         value={item || 0}
                                         onChange={e => this.handleChangeItemPrice(index, i, e)} />
                                 </div>
                             )}
-                            
-                            {/* press a add item button for adding more item input for the request section */}
-                            <button key={(index+3).toString()} className="button" type="button" onClick={() => this.addItem(index) }>Add Item</button>
-                            
-                            {/* press a remove button for each requestsection after the first one */}
-                            {
-                                index ?
-                                    <button 
-                                        key={(index+4).toString()}
-                                        type="button"  
-                                        className="button" 
-                                        onClick={() => this.removeRequestSection(index)}>Remove</button>
-                                        : null
-                            }
+
+                            <div className="button-section">
+                                {/* press a add item button for adding more item input for the request section */}
+                                <button key={(index+3).toString()} className="button" id="addItem" type="button" onClick={() => this.addItem(index) }>Add Item</button>
+                                
+                                {/* press a remove button for each requestsection after the first one */}
+                                {
+                                    index ?
+                                        <button 
+                                            key={(index+4).toString()}
+                                            type="button"  
+                                            className="button" 
+                                            id="remove" 
+                                            onClick={() => this.removeRequestSection(index)}>Remove Freind</button>
+                                            : null
+                                }
+                            </div>
                             <br />
+                            <br />
+                            
                         </div>
-                    ))}
+                        ))}
 
                     <br />
                     <div className="button-section">
-                        <button className="button" type="button" onClick={() => this.addRequestSection()}>Add Friend</button>
-                        <button className="button" type="submit">Submit</button>
+                        <button className="button" id="addFriend" type="button" onClick={() => this.addRequestSection()}>Add Friend</button>
+                        <button className="button" id="Submit" type="submit"><Link to="/profile" style={{ color: 'inherit', textDecoration: 'inherit'}}>Submit</Link></button>
                     </div>
                 </form>
                 
