@@ -1,5 +1,21 @@
-build:
-  docker:
-    web: Dockerfile
-run:
-  web: npm start
+networks:
+  theNetwork:
+    driver: bridge
+
+services:
+  backend:
+    container_name: backend
+    restart: always
+    build: ./backend
+    ports:
+      - "1000:1000"
+    networks:
+      - theNetwork
+  frontend:
+    container_name: frontend
+    restart: always
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - theNetwork
