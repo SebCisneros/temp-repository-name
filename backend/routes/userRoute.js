@@ -10,7 +10,19 @@ router.post('/', async (request, res) => {
     });
     userInfo.save();
 
-    console.log(userInfo)
+    res.send("Done")
   });
+
+router.post("/addFriend", async (request, res) => {
+  user.findOneAndUpdate({Email:request.body.email},{FirstName:"Ali"},{upsert:true})
+ 
+  res.send("Done")
+});
+
+router.get("/getUser", async (request, res) => {
+ user.find()
+   .then((users) => res.send(users))
+   .catch((err) => res.status(400).json("Error: " + err));
+});
 
 module.exports = router;
