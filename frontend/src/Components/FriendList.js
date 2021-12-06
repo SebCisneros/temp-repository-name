@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../CSSComponents/FriendList.css";
 import defaultUserPic from "../media/default-user-profile-pic.svg";
@@ -53,22 +53,19 @@ export default function FriendList() {
 
   useEffect(() => {
     async function setUp (){
-      AllUser_helper = await userFunctions.getAllUsers()
+      var AllUser_helper = await userFunctions.getAllUsers()
       setAllUser(AllUser_helper)
     }
     setUp()
   },[]);
 
-  handleInput((e) =>{
+  function handleInput(e){
     setIput(e.target.value)
-  })
+  }
 
-  handleAddFriend((email) => {
-    async function addFriend() {
+  async function handleAddFriend(email) {
       await userFunctions.addFriend(currentUser.email, email)
-    }
-    addFriend()
-  },[]);
+  };
 
   //handleRmoveFriend((e) =>{
   //  setFriends(friends.filter((friend) => friend.email !== e.target.value),
