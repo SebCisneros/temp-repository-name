@@ -21,9 +21,14 @@ export default class Split extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // need to be updated
+    getUserFriends() {
+        return ["Ali@gmail.com", "Seb@gmail.com","check@gmali.com"];
+    }
+
     componentDidMount(){
         this.setState({
-            Friends:[...this.state.Friends, 'Jieyi@buffalo.edu','Ali@buffalo.edu', 'Sebatian@buffalo.edu', 'seongjae@buffalo.edu', 'Floyd@buffalo.edu']}); 
+            Friends: this.getUserFriends()}); 
 
         //const response = await fetch('https://api.npms.io/v2/search?q=react')                              // unsure about the link
         //const data = await response.json();

@@ -113,7 +113,7 @@ export default class FriendList extends Component {
       });
       // need to update this
       // call 
-      // this.update_function()  
+      //this.update_function()  
     }
 
   handleRmoveFriend(email) {
