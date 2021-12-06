@@ -6,7 +6,7 @@ WORKDIR /root
 
 COPY . .
 
-WORKDIR /root/frontend
+WORKDIR /root/backend
 
 RUN npm install
 
