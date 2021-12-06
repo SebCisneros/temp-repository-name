@@ -137,30 +137,33 @@ export default class Split extends Component {
                                         onChange={e => this.handleChangeItemPrice(index, i, e)} />
                                 </div>
                             )}
-                            
-                            {/* press a add item button for adding more item input for the request section */}
-                            <button key={(index+3).toString()} className="button" id="addItem" type="button" onClick={() => this.addItem(index) }>Add Item</button>
-                            
-                            {/* press a remove button for each requestsection after the first one */}
-                            {
-                                index ?
-                                    <button 
-                                        key={(index+4).toString()}
-                                        type="button"  
-                                        className="button" 
-                                        id="remove" 
-                                        onClick={() => this.removeRequestSection(index)}>Remove Friend</button>
-                                        : null
-                            }
+
+                            <div className="button-section">
+                                {/* press a add item button for adding more item input for the request section */}
+                                <button key={(index+3).toString()} className="button" id="addItem" type="button" onClick={() => this.addItem(index) }>Add Item</button>
+                                
+                                {/* press a remove button for each requestsection after the first one */}
+                                {
+                                    index ?
+                                        <button 
+                                            key={(index+4).toString()}
+                                            type="button"  
+                                            className="button" 
+                                            id="remove" 
+                                            onClick={() => this.removeRequestSection(index)}>Remove Freind</button>
+                                            : null
+                                }
+                            </div>
                             <br />
                             <br />
+                            
                         </div>
-                    ))}
+                        ))}
 
                     <br />
                     <div className="button-section">
                         <button className="button" id="addFriend" type="button" onClick={() => this.addRequestSection()}>Add Friend</button>
-                        <Link to="/profile"><button className="button" id="Submit" type="submit">SubmitProfile</button></Link>
+                        <button className="button" id="Submit" type="submit"><Link to="/profile" style={{ color: 'inherit', textDecoration: 'inherit'}}>Submit</Link></button>
                     </div>
                 </form>
                 
