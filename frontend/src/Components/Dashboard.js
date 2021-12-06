@@ -27,7 +27,7 @@ export default function Dashboard() {
       {currentUser ? (
         <>
         <SplitRequest/>
-        <FriendList/>
+      
 
 
         </>
