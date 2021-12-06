@@ -6,9 +6,11 @@ WORKDIR /root
 
 COPY . .
 
+WORKDIR /root/frontend
+
 RUN npm install
 
-EXPOSE 3000
+EXPOSE $PORT
 
 CMD npm run start
 
