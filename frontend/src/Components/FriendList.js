@@ -1,12 +1,10 @@
-import { React, Component, useState } from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
-import { alignPropType } from "react-bootstrap/esm/DropdownMenu";
 import "../CSSComponents/FriendList.css";
 import defaultUserPic from "../media/default-user-profile-pic.svg";
-import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
-function Friend(friend,remove) {
+function Friend(friend) {
      const { currentUser, logout } = useAuth();
  
   return (
@@ -47,50 +45,34 @@ function Friend(friend,remove) {
 }
 
 export default function FriendList() {
-  const { currentUser, logout } = useAuth();
-  //{currentUser.email}
-  function getAllUsers() {
-    return ["Ali", "J", "Seb", "PlaceHolder"];
-  }
-
-  function getUserFriends() {
-    return ["Ali", "Seb"];
-  }
-
-  function addFriend(username) {
-    return "Friend Added";
-  }
-
+  const currentUser = useAuth();
+  const [allUser, setAllUser] = useState([]);
   const [friends, setFriends] = useState([]);
   const [input, setIput] = useState("");
 
-  function handleInput(e) {
-    this.setState({
-      input: e.target.value,
-    });
-  }
 
-  function handleAddFriend() {
-    {
-      this.state.input !== "" &&
-        this.setState({
-          friends: [
-              ...this.state.friends,
-              { email: this.state.input, profilePic: defaultUserPic }
-          ],
-          input: ""
-      });
-      // need to update this
-      // call 
-      //this.update_function()  
+  useEffect(() => {
+    async function setUp (){
+      AllUser_helper = await userFunctions.getAllUsers()
+      setAllUser(AllUser_helper)
     }
+    setUp()
+  },[]);
 
-  function handleRmoveFriend(email) {
-    this.setState({
-      friends: this.state.friends.filter((friend) => friend.email !== email),
-    });
-    // remove friend function
-  }
+  handleInput((e) =>{
+    setIput(e.target.value)
+  })
+
+  handleAddFriend((email) => {
+    async function addFriend() {
+      await userFunctions.addFriend(currentUser.email, email)
+    }
+    addFriend()
+  },[]);
+
+  //handleRmoveFriend((e) =>{
+  //  setFriends(friends.filter((friend) => friend.email !== e.target.value),
+  //})
 
   return (
     <div className="body">
@@ -101,17 +83,17 @@ export default function FriendList() {
         value={handleInput}
         onChange={handleInput}
       />
-      <button id="search_button" onClick={handleAddFriend}>
-        Search friend
-      </button>
+      <Link to="/friendlist" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <button id="search_button" onClick={e => handleAddFriend(e.target.value)}>
+          Search friend
+        </button>
+      </Link>
       {friends.length > 0 ? (
         <div className="friends_list">
           {this.state.friends.map((friend) => (
             <Friend
               key={friend.email}
               friend={friend}
-              remove={handleRmoveFriend}
-              splitRequest={handleInput}
             />
           ))}
         </div>
@@ -120,5 +102,4 @@ export default function FriendList() {
       )}
     </div>
   );
-}
 }
