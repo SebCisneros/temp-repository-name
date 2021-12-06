@@ -28,6 +28,9 @@ export default function NavBar() {
             <a>
               <Link to="/profile">Profile</Link>
             </a>
+            <a>
+              <Link to="/friendlist">Friend List</Link>
+            </a>
             <a onClick={handleLogout}>
               <Link to="/logout">Logout</Link>
             </a>

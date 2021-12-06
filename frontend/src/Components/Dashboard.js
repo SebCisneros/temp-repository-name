@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import Money_Transfer from "../media/Money_Transfer.svg";
 import "../CSSComponents/Dashboard.css";
 import SplitRequest from "./RequestSplitForm"
+import FriendList from "./FriendList";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -26,6 +27,9 @@ export default function Dashboard() {
       {currentUser ? (
         <>
         <SplitRequest/>
+      
+
+
         </>
       ) : (
         <>
