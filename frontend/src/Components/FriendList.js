@@ -4,6 +4,7 @@ import { alignPropType } from "react-bootstrap/esm/DropdownMenu";
 import "../CSSComponents/FriendList.css";
 import defaultUserPic from "../media/default-user-profile-pic.svg";
 import axios from "axios";
+import * as userFunctions from '../axiosFunctions'
 
 function Friend(props) {
   const { friend, remove } = props;
@@ -76,14 +77,14 @@ export default class FriendList extends Component {
       this.update_function()
     }
 
-    update_function(){
+    async update_function(){
       const friend =  this.getUserFriends()
       const friend_helper = []
       for (let i=0; i<friend.length; i++){
         const _ = {email: friend[i], profilePic: defaultUserPic }
         friend_helper.push(_)
       }
-      const allUser = this.getAllUsers()
+      const allUser = await userFunctions.getAllUsers()
       var input = ""
       if (allUser.length > 0){
         input = allUser[0]

@@ -28,7 +28,7 @@ export default function Signup() {
         "userName": emailRef.current.value
       } 
       await signup(emailRef.current.value, passwordRef.current.value);
-      await axios.post("http://localhost:1000/newUser", data);
+      await axios.post("http://localhost:1000/user", data);
       setConfirmation("User Created");
       setLoading(true);
     } catch (err) {
