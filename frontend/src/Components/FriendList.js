@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../CSSComponents/FriendList.css";
 import defaultUserPic from "../media/default-user-profile-pic.svg";
 import { useAuth } from "../context/AuthContext";
+import {getAllUsers,getFriendList,addFriend} from "../axiosFunctions"
 
 function Friend(friend) {
      const { currentUser, logout } = useAuth();
@@ -53,7 +54,7 @@ export default function FriendList() {
 
   useEffect(() => {
     async function setUp (){
-      var AllUser_helper = await userFunctions.getAllUsers()
+      var AllUser_helper = await getAllUsers()
       setAllUser(AllUser_helper)
     }
     setUp()
@@ -64,7 +65,7 @@ export default function FriendList() {
   }
 
   async function handleAddFriend(email) {
-      await userFunctions.addFriend(currentUser.email, email)
+      await addFriend(currentUser.email, email)
   };
 
   //handleRmoveFriend((e) =>{
@@ -77,7 +78,6 @@ export default function FriendList() {
       <input
         type="text"
         placeholder="Friend Email"
-        value={handleInput}
         onChange={handleInput}
       />
       <Link to="/friendlist" style={{ color: 'inherit', textDecoration: 'inherit'}}>
