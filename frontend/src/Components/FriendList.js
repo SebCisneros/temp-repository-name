@@ -26,20 +26,20 @@ function Friend(friend,remove) {
       </div>
 
       <div id="push-right">
-        <button
+        {/*<button
           className="button"
           id="remove_button"
           onClick={() => remove(friend.email)}
         >
           Remove Friend
-        </button>
+        </button>*/}
       </div>
 
       <div id="splitRequest">
         {/* modify function for this 
                     allow this switch to request page directly and request page will show this as first name */}
         <button className="button" id="request_button">
-          <Link to="/">Request Split</Link>
+          <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit'}}>Request Split</Link>
         </button>
       </div>
     </div>
@@ -75,21 +75,21 @@ export default function FriendList() {
       this.state.input !== "" &&
         this.setState({
           friends: [
-            ...this.state.friends,
-            { email: this.state.input, profilePic: defaultUserPic },
+              ...this.state.friends,
+              { email: this.state.input, profilePic: defaultUserPic }
           ],
-          input: "",
-        });
+          input: ""
+      });
+      // need to update this
+      // call 
+      //this.update_function()  
     }
-    // this need to search if the user exist and add it to this user's friend list
-  }
 
   function handleRmoveFriend(email) {
     this.setState({
       friends: this.state.friends.filter((friend) => friend.email !== email),
     });
-
-    // this should remove this person's friend from database
+    // remove friend function
   }
 
   return (
@@ -120,4 +120,5 @@ export default function FriendList() {
       )}
     </div>
   );
+}
 }

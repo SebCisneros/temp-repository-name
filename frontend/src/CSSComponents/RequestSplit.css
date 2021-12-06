@@ -1,6 +1,8 @@
 #center{
     margin-left: 5%;
     margin-top: 2%;
+    width: 80%;
+
 }
 
 #instruction{
@@ -14,6 +16,7 @@ label{
 }
 
 
+
 button{
     border-color: white;
     border-radius: 10%;
@@ -22,12 +25,10 @@ button{
 #addItem{
     background-color: #f9c105;
     margin-right: 5px;
-    
 }
 
 #remove{
     background-color: #fbdf84;
-    
 }
 
 
@@ -40,3 +41,12 @@ button{
     background-color: #9caafc;
 }
 
+.button-section{
+    display: flex;
+    width: 30%;
+}
+
+Link{
+    text-decoration: none;
+    color: black;
+}
