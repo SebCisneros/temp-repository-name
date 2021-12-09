@@ -3,47 +3,8 @@ import { Link } from "react-router-dom";
 import "../CSSComponents/FriendList.css";
 import defaultUserPic from "../media/default-user-profile-pic.svg";
 import { useAuth } from "../context/AuthContext";
-import {getAllUsers,getFriendList,addFriend} from "../axiosFunctions"
+import {getAllUsers,getFriendList,addFriend, removeFriend} from "../axiosFunctions"
 
-function Friend(friend) {
-     const { currentUser, logout } = useAuth();
- 
-  return (
-    <div className="friend-container">
-      <div className="inline">
-        {" "}
-        <img
-          className="profilePic"
-          src={friend.profilePic}
-          alt={friend.email}
-        />
-        {friend.email}
-      </div>
-
-      <div className="inline">
-        <p></p>
-      </div>
-
-      <div id="push-right">
-        {/*<button
-          className="button"
-          id="remove_button"
-          onClick={() => remove(friend.email)}
-        >
-          Remove Friend
-        </button>*/}
-      </div>
-
-      <div id="splitRequest">
-        {/* modify function for this 
-                    allow this switch to request page directly and request page will show this as first name */}
-        <button className="button" id="request_button">
-          <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit'}}>Request Split</Link>
-        </button>
-      </div>
-    </div>
-  );
-}
 
 export default function FriendList() {
   const currentUser = useAuth();
@@ -54,49 +15,118 @@ export default function FriendList() {
 
   useEffect(() => {
     async function setUp (){
-      var AllUser_helper = await getAllUsers()
+      // get all the user in a list
+      const AllUser_helper = await getAllUsers()()
       setAllUser(AllUser_helper)
+      //setAllUser(["a@gmail.com", "b@gmail.com", "c@gmail.com", "d@gmail.com"])
+      
+      // get all the friend of current user
+      //var friends_helper = ["Ali@gmail.com", "Seb@gmail.com","check@gmali.com"] 
+      var friends_helper = await getFriendList(currentUser.email)
+      var friends_state = []
+      for (let i = 0; i < friends_helper.length; i++) {
+          friends_state.push({ email: friends_helper[i], profilePic: defaultUserPic })
+      }
+        
+        
+        setFriends(friends_state)
+
+        // set input
+        setIput(friends_helper[0])
     }
     setUp()
   },[]);
+
+
+  async function handleAddFriend() {
+    await addFriend(currentUser.email, input)
+  };
 
   function handleInput(e){
     setIput(e.target.value)
   }
 
-  async function handleAddFriend(email) {
-      await addFriend(currentUser.email, email)
-  };
-
-  //handleRmoveFriend((e) =>{
-  //  setFriends(friends.filter((friend) => friend.email !== e.target.value),
-  //})
+  async function handleRemoveFriend(email) {
+    await removeFriend(currentUser.email, email)
+  }
 
   return (
     <div className="body">
       <h2>Friend List</h2>
-      <input
-        type="text"
-        placeholder="Friend Email"
-        onChange={handleInput}
-      />
+
+      {/* given all the users that is not current user's friend as drop down menu */}
+      <select 
+        required
+        onChange={e => handleInput(e)}
+      >
+        {/* loops through this.state.Friends */}
+        {
+          allUser.map((user) =>
+              <option
+                  key={user}
+                  value={user}
+                  >{user}
+              </option>
+          )
+        }
+      </select>
+      
+      {/* refresh the page after add friend */}
       <Link to="/friendlist" style={{ color: 'inherit', textDecoration: 'inherit'}}>
-        <button id="search_button" onClick={e => handleAddFriend(e.target.value)}>
+        <button id="search_button" onClick={handleAddFriend()}>
           Search friend
         </button>
       </Link>
+
+
+      {/* refresh the page after add friend */}
       {friends.length > 0 ? (
         <div className="friends_list">
-          {this.state.friends.map((friend) => (
-            <Friend
-              key={friend.email}
-              friend={friend}
-            />
-          ))}
+
+          {/* each friend section */}
+            {friends.map((friend) => 
+              <div className="friend-container">
+              {/* friend profile pic and email */}
+              <div className="inline">
+                {" "}
+                <img
+                  className="profilePic"
+                  src={friend.profilePic}
+                  alt={friend.email}
+                />
+                {friend.email}
+              </div>
+        
+              <div className="inline">
+                <p></p>
+              </div>
+              
+              {/* remove the friend */}
+              <div id="push-right">
+                <button
+                  className="button"
+                  id="remove_button"
+                  onClick={handleRemoveFriend(friend.email)}
+                >
+                  <Link to="/friendlist" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    Remove Friend
+                  </Link>
+                </button>
+              </div>
+              
+              {/* go to request page */}
+              <div id="splitRequest">
+                <button className="button" id="request_button">
+                  <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit'}}>Request Split</Link>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-      ) : (
+        ) : (
         "Time to add new friends."
       )}
+        {/*remove={this.handleRmoveFriend}*/}
     </div>
   );
 }
