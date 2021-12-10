@@ -19,6 +19,12 @@ router.post("/addFriend", async (request, res) => {
   doc.save()
 });
 
+router.post("/removeFriend", async (request, res) => {
+  doc = await user.findOne({ "userName": request.body.userName })
+  doc.friendList.pull(request.body.friend)
+  doc.save()
+});
+
 router.post("/getFriendList", async (request, res) => {
   doc = await user.find({ userName: request.body.userName });
   res.send(doc[0].friendList);
