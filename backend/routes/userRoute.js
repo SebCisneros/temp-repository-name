@@ -8,9 +8,11 @@ router.post("/", async (request, res) => {
   const userInfo = new user({
     userName: request.body.userName,
   });
-  userInfo.save();
+  if (request.body.userName != null && userInfo != null) {
+    userInfo.save();
 
-  console.log(userInfo);
+    console.log(userInfo);
+  }
 });
 
 router.post("/addFriend", async (request, res) => {
@@ -31,7 +33,9 @@ router.post("/removeFriend", async (request, res) => {
 
 router.post("/getFriendList", async (request, res) => {
   doc = await user.find({ userName: request.body.userName });
-  res.send(doc[0].friendList);
+  if (doc[0].friendList != null) {
+    res.send(doc[0].friendList);
+  }
 });
 
 router.get("/getAllUsers", async (request, res) => {
