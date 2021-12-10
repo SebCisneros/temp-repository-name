@@ -14,9 +14,11 @@ router.post("/", async (request, res) => {
 });
 
 router.post("/addFriend", async (request, res) => {
-  doc = await user.findOne({ "userName": request.body.userName })
-  doc.friendList.push(request.body.friend)
-  doc.save()
+  if (request != null){
+    doc = await user.findOne({ "userName": request.body.userName })
+    doc.friendList.push(request.body.friend)
+    doc.save()
+  } 
 });
 
 router.post("/removeFriend", async (request, res) => {
