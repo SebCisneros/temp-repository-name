@@ -1,12 +1,14 @@
 import { React, useState,useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import "../CSSComponents/FriendList.css";
 import defaultUserPic from "../media/default-user-profile-pic.svg";
+
 import { useAuth } from "../context/AuthContext";
 import {getAllUsers,getFriendList,addFriend, removeFriend} from "../axiosFunctions"
 
 
 export default function FriendList() {
+  const history = useHistory()
   const {currentUser} = useAuth();
   const [allUser, setAllUser] = useState([]);
   const [friends, setFriends] = useState([]);
@@ -39,9 +41,37 @@ export default function FriendList() {
   },[]);
 
 
+  useEffect(() => {
+    async function setUp (){
+      // get all the user in a list
+      const AllUser_helper = await getAllUsers()
+      setAllUser(AllUser_helper)
+      //setAllUser(["a@gmail.com", "b@gmail.com", "c@gmail.com", "d@gmail.com"])
+      
+      // get all the friend of current user
+      //var friends_helper = ["Ali@gmail.com", "Seb@gmail.com","check@gmali.com"] 
+      var friends_helper = await getFriendList(currentUser.email)
+      friends_helper = friends_helper.data
+      var friends_state = []
+      for (let i = 0; i < friends_helper.length; i++) {
+          friends_state.push({ email: friends_helper[i], profilePic: defaultUserPic })
+      }
+        
+        
+        setFriends(friends_state)
+
+        // set input
+        setIput(friends_helper[0])
+    }
+    setUp()
+  },[handleAddFriend]);
+
+
+
   async function handleAddFriend() {
     console.log(input)
     await addFriend(currentUser.email, input)
+    history.push("/friendslist")
   };
 
   function handleInput(e){
@@ -50,6 +80,7 @@ export default function FriendList() {
 
   async function handleRemoveFriend(email) {
     await removeFriend(currentUser.email, email)
+    history.push("/friendslist")
   }
 
   return (
@@ -74,11 +105,11 @@ export default function FriendList() {
       </select>
       
       {/* refresh the page after add friend */}
-      <Link to="/friendlist" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+     
         <button id="search_button" onClick={()=>handleAddFriend()}>
           Search friend
         </button>
-      </Link>
+
 
 
       {/* refresh the page after add friend */}
@@ -105,15 +136,6 @@ export default function FriendList() {
               
               {/* remove the friend */}
               <div id="push-right">
-                <button
-                  className="button"
-                  id="remove_button"
-                  onClick={handleRemoveFriend(friend.email)}
-                >
-                  <Link to="/friendlist" style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                    Remove Friend
-                  </Link>
-                </button>
               </div>
               
               {/* go to request page */}
@@ -128,7 +150,6 @@ export default function FriendList() {
         ) : (
         "Time to add new friends."
       )}
-        {/*remove={this.handleRmoveFriend}*/}
     </div>
   );
 }
