@@ -7,7 +7,7 @@ import {getAllUsers,getFriendList,addFriend, removeFriend} from "../axiosFunctio
 
 
 export default function FriendList() {
-  const currentUser = useAuth();
+  const {currentUser} = useAuth();
   const [allUser, setAllUser] = useState([]);
   const [friends, setFriends] = useState([]);
   const [input, setIput] = useState("");
@@ -23,6 +23,7 @@ export default function FriendList() {
       // get all the friend of current user
       //var friends_helper = ["Ali@gmail.com", "Seb@gmail.com","check@gmali.com"] 
       var friends_helper = await getFriendList(currentUser.email)
+      friends_helper = friends_helper.data
       var friends_state = []
       for (let i = 0; i < friends_helper.length; i++) {
           friends_state.push({ email: friends_helper[i], profilePic: defaultUserPic })
@@ -39,6 +40,7 @@ export default function FriendList() {
 
 
   async function handleAddFriend() {
+    console.log(input)
     await addFriend(currentUser.email, input)
   };
 
@@ -73,7 +75,7 @@ export default function FriendList() {
       
       {/* refresh the page after add friend */}
       <Link to="/friendlist" style={{ color: 'inherit', textDecoration: 'inherit'}}>
-        <button id="search_button" onClick={handleAddFriend()}>
+        <button id="search_button" onClick={()=>handleAddFriend()}>
           Search friend
         </button>
       </Link>

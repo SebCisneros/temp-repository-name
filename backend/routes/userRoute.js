@@ -33,7 +33,7 @@ router.post("/removeFriend", async (request, res) => {
 
 router.post("/getFriendList", async (request, res) => {
   doc = await user.find({ userName: request.body.userName });
-  if (doc[0].friendList != null) {
+  if (doc[0] != null && doc[0].friendList != undefined) {
     res.send(doc[0].friendList);
   }
 });
