@@ -41,37 +41,14 @@ export default function FriendList() {
   },[]);
 
 
-  useEffect(() => {
-    async function setUp (){
-      // get all the user in a list
-      const AllUser_helper = await getAllUsers()
-      setAllUser(AllUser_helper)
-      //setAllUser(["a@gmail.com", "b@gmail.com", "c@gmail.com", "d@gmail.com"])
-      
-      // get all the friend of current user
-      //var friends_helper = ["Ali@gmail.com", "Seb@gmail.com","check@gmali.com"] 
-      var friends_helper = await getFriendList(currentUser.email)
-      friends_helper = friends_helper.data
-      var friends_state = []
-      for (let i = 0; i < friends_helper.length; i++) {
-          friends_state.push({ email: friends_helper[i], profilePic: defaultUserPic })
-      }
-        
-        
-        setFriends(friends_state)
 
-        // set input
-        setIput(friends_helper[0])
-    }
-    setUp()
-  },[handleAddFriend]);
 
 
 
   async function handleAddFriend() {
-    console.log(input)
     await addFriend(currentUser.email, input)
-    history.push("/friendslist")
+    setFriends(friends.push(input))
+    
   };
 
   function handleInput(e){
