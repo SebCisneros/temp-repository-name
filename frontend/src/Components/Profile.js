@@ -25,7 +25,7 @@ export default function Profile() {
 
   useEffect(() => {
       async function getToken(){
-        var response = await axios.get("http://localhost:1000/api/create_link_token")
+        var response = await axios.get("https://splittybackend.herokuapp.com/api/create_link_token")
         setLinkToken(response.data["link_token"])
       }
       getToken()
