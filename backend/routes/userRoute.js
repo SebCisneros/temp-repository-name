@@ -25,7 +25,7 @@ router.post("/addFriend", async (request, res) => {
 
 router.post("/removeFriend", async (request, res) => {
   doc = await user.findOne({ userName: request.body.userName });
-  if (request.body.friend != null && doc != null && doc.friendList != null) {
+  if (request.body.friend != null && doc != null && doc.friendList != null && request.body.userName != null) {
     doc.friendList.pull(request.body.friend);
     doc.save();
   }
