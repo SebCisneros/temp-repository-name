@@ -28,8 +28,10 @@ function App() {
             <Switch>
 
             {/* frindlist area */}
-
-            <Route path="/friend-list-page">
+     
+              <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/friend-list-page">
           <FriendListPage {...friendListPageData} />
         </Route>
 
@@ -51,9 +53,6 @@ function App() {
           />
         </Route>
 
-              <PrivateRouteLoggedIn exact path="/signup" component={Signup} />
-              <Route exact path="/" component={Dashboard} />
-            
 
 
 
